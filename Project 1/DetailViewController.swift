@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         }
         
         guard let imageName = selectedImage else { return }
-        let shareLink = "Try it: http://yoururl.com/%22"
+        let shareLink = "http://yoururl.com/%22"
         let vc = UIActivityViewController(activityItems: [image, imageName, shareLink], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
