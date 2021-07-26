@@ -28,20 +28,6 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @objc func sharedTapped() {
-        guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
-            print("No image found")
-            return
-        }
-        
-        guard let imageName = selectedImage else { return }
-        let shareLink = "http://yoururl.com/%22"
-        let vc = UIActivityViewController(activityItems: [image, imageName, shareLink], applicationActivities: [])
-        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        present(vc, animated: true)
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.hidesBarsOnTap = true
@@ -50,6 +36,20 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
+    }
+    
+    @objc func sharedTapped() {
+        guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
+            print("No image found")
+            return
+        }
+        
+        guard let imageName = selectedImage else { return }
+        let shareLink = "https://twitter.com/"
+        let vc = UIActivityViewController(activityItems: [image, imageName, shareLink], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
+        
     }
 
 }
