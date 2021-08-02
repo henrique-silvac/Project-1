@@ -11,6 +11,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     var pictures = [String]()
+    var picturesViewCount = [String: Int]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,9 @@ class ViewController: UITableViewController {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
+        
+        let userDefaults = UserDefaults.standard
+        picturesViewCount = userDefaults.object(forKey: "ViewCount") as? [String: Int] ?? [String: Int]()
         
         for item in items.sorted() {
             if item.hasPrefix("nssl") {
